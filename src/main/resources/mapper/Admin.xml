@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daniel.dao.AdminDAO">
+
+    <select id="get" parameterType="_int" resultType="Admin">
+        select * from admin where id= #{id}
+    </select>
+
+    <select id="getByAdminid" resultType="Admin">
+        select * from admin where adminid= #{adminid}
+    </select>
+
+    <select id="getAdminLevel" resultType="int">
+        select level from admin where id=#{id}
+    </select>
+
+    <update id="update" parameterType="Admin" >
+        update admin set name=#{name} where id=#{id}
+    </update>
+
+    <select id="checkPassword" parameterType="Admin" resultType="int">
+        select count(*) from admin where adminid = #{adminid} and password = #{password}
+    </select>
+
+    <select id="checkExistAid" resultType="int">
+        select count(*) from admin where id= #{id}
+    </select>
+
+    <insert id="creatAdmin" parameterType="Admin" useGeneratedKeys="true" keyProperty="id">
+        insert into admin(adminid,name,password,sex,tel,address,major,level)
+        values(#{adminid},#{name},#{password},#{sex},#{tel},#{address},#{major},#{level})
+    </insert>
+
+</mapper>

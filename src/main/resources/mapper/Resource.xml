@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.daniel.dao.ResourceDAO">
+        <select id="list" resultType="MyResource">
+            select * from resource
+        </select>
+        <select id="get" parameterType="int" resultType="MyResource">
+            select * from resource where id = #{id}
+        </select>
+        <select id="count" resultType="int">
+            select count(id) from resource
+        </select>
+        <delete id="delete" parameterType="int">
+            delete from resource where id = #{id}
+        </delete>
+        <update id="addResource" parameterType="MyResource" useGeneratedKeys="true" keyProperty="id" >
+            insert into resource
+            (userid,name,suffix,description)
+            values
+            (#{userId},#{name},#{suffix},#{description})
+        </update>
+    </mapper>
